@@ -215,41 +215,53 @@
  *   User:
  *       type: object
  *       required:
- *         - first_name
- *         - last_name
- *         - email
+ *         - full_name
+ *         - last_names
+ *         - number_id
+ *         - type_number_id
  *         - password
+ *         - password_confirmation
+ *         - number_phone
+ *         - email
  *         - role_id
  *       properties:
- *         first_name:
+ *         full_name:
  *           type: string     
  *           description: title of the publication     
- *         last_name:
+ *         last_names:
  *           type: string
  *           description: description of the publication
  *         number_id:
  *           type: string
  *           description: number_id user
- *         email:
+ *         type_number_id:
  *           type: string
  *           description: Email user
- *         role_id:
+ *         password:
  *           type: integer
  *           description: id rol user
- *         password:
- *           type: string
- *           description: Password user
  *         password_confirmation:
  *           type: string
  *           description: password confirmation user
+ *         number_phone:
+ *           type: string
+ *           description: Password user
+ *         email:
+ *           type: string
+ *           description: Password user
+ *         role_id:
+ *           type: string
+ *           description: Password user
  *       example:
- *         first_name: "new first_name"
- *         last_name: "new last_name"
+ *         full_name: "new full_name"
+ *         last_names: "new last_names"
  *         number_id: "200993939"
- *         email: "email@prolesys.com"
- *         role_id: 1
+ *         type_number_id: 1
  *         password: "1234"
  *         password_confirmation: "1234"
+ *         number_phone: "(0424)-223-12-38"
+ *         email: "email@prolesys.com"
+ *         role_id: 1
 
  *   EditUser:
  *     type: object

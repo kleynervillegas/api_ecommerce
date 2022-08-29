@@ -5,21 +5,22 @@ import bcrypt from 'bcrypt'
 import Sequelize from 'sequelize';
 import { getPaginate } from "../common/utils/getPaginate.js";
 
-export class UserService extends CrudService {
-    constructor() {
-        super(ModelUser)
-    }
+export class UserService {
+    constructor() { }
 
     async userCreate(transaction, data) {
+      
         const user = await ModelUser.create({
-            first_name: data.first_name,
-            last_name: data.last_name,
+            full_name: data.full_name,
+            last_names: data.last_names,
             number_id: data.number_id,
             email: data.email,
-            role_id: data.role_id,
+            type_number_id: data.type_number_id,
             password: await bcrypt.hash(data.password, parseInt(process.env['SALT'])),
+            number_phone: data.number_phone,
+            role_id: data.role_id,
         }, transaction)
-            .catch(() => {
+            .catch((error) => {
                 throw 'badRequest';
             });
 

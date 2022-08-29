@@ -8,7 +8,7 @@ import validatorUser from '../validations/validatorUser.js';
 const UserController = express.Router();
 const userService = new UserService()
 
-UserController.post(URLS.userCreate,validatorUser, async (req, res) => {
+UserController.post(URLS.userCreate, validatorUser, async (req, res) => {
   const transaction = await database.transaction();
   await userService.userCreate(
     { transaction },

@@ -1,24 +1,18 @@
 import { Sequelize, Model } from 'sequelize'
 import * as dotenv from 'dotenv'
 import config from "./config.js"
+import mysql2 from 'mysql2'
 dotenv.config()
 
-const opts = {
-    define: {}
-}
 
-// const database = new Sequelize('postgres://postgres:root@localhost:5432/admin_web', opts)
-    
+const database = new Sequelize(config.NAME_DATA_BASE, config.USER_NAME, config.PASSWORD, {
+    host: config.SEQUELIZE_URI,
+    dialect: config.TIPY_CONNECTION, /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
+    dialectModule: mysql2,
+});
 
-    //   Option 3: Passing parameters separately (other dialects)
-     const database = new Sequelize(config.NAME_DATA_BASE, config.USER_NAME, config.PASSWORD, {
-        host: config.SEQUELIZE_URI,
-        dialect: config.TIPY_CONNECTION, /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
-        dialectModule: require('mysql2'),
-    });
-
-    await Sequelize.authenticate();
-    console.log('connect sucess bd for sequelize', database.getNameDataBase  );
+await database.authenticate();
+console.log('connect sucess bd for sequelize', database.getDatabaseName());
 
 
 export { database, Model }

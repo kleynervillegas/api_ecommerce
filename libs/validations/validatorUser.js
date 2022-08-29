@@ -11,25 +11,27 @@ import bcrypt from 'bcrypt'
 const validatorUser = express.Router();
 
 const params = {
-  first_name: 'first_name',
-  last_name: 'last_name',
+  full_name: 'Nombres',
+  last_names: 'Apellidos',
+  type_number_id: 'Tipo de cedula',
+  password: 'Contraseña',
   email: 'Correo',
-  password: 'password',
   user_id: 'user_id',
-  number_id: 'Cedula',
+  number_id: 'Cédula',
   password_confirmation: 'password_confirmation',
   role_id: 'role_id',
-  password_old: 'password_old'
+  number_phone: 'telefono',
+  password_old: 'Contraseña anterior'
 }
 
 validatorUser.post(URLS.userCreate, [
-  validatorExpress.check('first_name', VALIDATESCHEMA.required)
+  validatorExpress.check('full_name', VALIDATESCHEMA.required)
     .notEmpty()
     .isLength({ min: 2 })
     .withMessage(VALIDATESCHEMA.minLength)
     .isLength({ max: 100 })
     .withMessage(VALIDATESCHEMA.maxLength),
-  validatorExpress.check('last_name', VALIDATESCHEMA.required)
+  validatorExpress.check('last_names', VALIDATESCHEMA.required)
     .notEmpty()
     .isLength({ min: 2 })
     .withMessage(VALIDATESCHEMA.minLength)

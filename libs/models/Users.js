@@ -4,40 +4,47 @@ import ModelRoles from './Roles.js'
 class Users extends Model { }
 
 const User = Users.init({
-    first_name: {
+    full_name: {
         type: Sequelize.STRING
     },
-    last_name: {
+    last_names: {
         type: Sequelize.STRING
-    }, 
-    email: {
+    },
+    number_id: {
+        type: Sequelize.STRING,
+        unique: true
+    },
+    type_number_id: {
         type: Sequelize.STRING,
         unique: true
     },
     password: {
         type: Sequelize.STRING
     },
-    status: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: true
+    number_phone: {
+        type: Sequelize.STRING,
+        unique: true
+    },
+    email: {
+        type: Sequelize.STRING,
+        unique: true
     },
     role_id: {
         type: Sequelize.INTEGER,
         defaultValue: 2
     },
-    number_id: {
-        type: Sequelize.STRING,
-        unique: true
-    }
+    status: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
+    },
 },
-{
-    sequelize: database,
-    schema: 'public',
-    modelName: 'users',
-    timestamps: true,
-    underscored: true,
-    freezeTableName: true
-})
+    {
+        sequelize: database,
+        modelName: 'users',
+        timestamps: true,
+        underscored: true,
+        freezeTableName: true
+    })
 
 ModelRoles.hasOne(Users, {
     foreignKey: "id"
