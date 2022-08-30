@@ -10,7 +10,7 @@ const response = new ResponseService(
 
 export default function (req, res, next) {
   if (req.headers.token) {
-    jwt.verify(req.headers.token, process.env['JWT_KEY'], function (err, decoded) {
+    jwt.verify(req.headers.token, process.env['jwtSecret'], function (err, decoded) {
       if (err) {        
         res.status(STATUS.Unauthorized).send(response);
       } else {

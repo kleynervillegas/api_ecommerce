@@ -2,10 +2,10 @@ import { database, Model } from '../config/db_config.js';
 import Sequelize from 'sequelize';
 import ModelUser from './Users.js'
 
-class gallerys extends Model { }
+class gallerysImage extends Model { }
 
-const gallery = gallerys.init({
-    name: {
+const galleryImage = gallerysImage.init({
+    url_image: {
         type: Sequelize.STRING
     }, 
     publication_id: {
@@ -18,11 +18,10 @@ const gallery = gallerys.init({
 },
 {
     sequelize: database,
-    schema: 'public',
-    modelName: 'gallery_photos',
+    modelName: 'gallerys_image',
     timestamps: true,
     underscored: true,
     freezeTableName: true
 })
 
-export default gallerys;
+export default gallerysImage;

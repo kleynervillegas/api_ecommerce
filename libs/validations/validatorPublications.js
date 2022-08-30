@@ -10,18 +10,19 @@ const validatePublication = express.Router();
 
 //Traduccion de Parametros de Entrada
 const params = {
-  title: 'Title',
-  description: 'Description',
+  name: 'name',
+  description: 'description',
   image: 'image',
-  featured: 'featured',
-  body_news: 'body_news',
-  gallery: 'gallery',
-  categories: "Categories"
+  coin: 'coin',
+  price: 'price',
+  stop_min: 'stop_min',
+  stop_max: "stop_max",
+
 }
 
 
 validatePublication.post(URLS.createPublication, [
-  validatorExpress.check('title', VALIDATESCHEMA.required)
+  validatorExpress.check('name', VALIDATESCHEMA.required)
     .notEmpty()
     .isLength({ min: 5 })
     .withMessage(VALIDATESCHEMA.minLength)
@@ -33,16 +34,9 @@ validatePublication.post(URLS.createPublication, [
     .withMessage(VALIDATESCHEMA.minLength)
     .isLength({ max: 255 })
     .withMessage(VALIDATESCHEMA.maxLength),
-  validatorExpress.check('image', VALIDATESCHEMA.required)
-    .custom(value => {
-      const sizeImage = Buffer.from(value.substring(value.indexOf(',') + 1));
-      if (sizeImage.length > 1000000) {
-        return Promise.reject(VALIDATESCHEMA.sizeImage);
-      }
-      return true;
-    })
+  validatorExpress.check('coin', VALIDATESCHEMA.required)
     .notEmpty(),
-  validatorExpress.check('gallery', VALIDATESCHEMA.required)
+  validatorExpress.check('image', VALIDATESCHEMA.required)
     .isArray()
     .withMessage(VALIDATESCHEMA.array)
     .custom(async value => {
@@ -64,15 +58,11 @@ validatePublication.post(URLS.createPublication, [
       }
       return true;
     }),
-  validatorExpress.check('categories', VALIDATESCHEMA.required)
-    .notEmpty()
-    .isArray()
-    .withMessage(VALIDATESCHEMA.array),
-  validatorExpress.check('featured', VALIDATESCHEMA.required)
-    .notEmpty()
-    .isBoolean()
-    .withMessage(VALIDATESCHEMA.boolean),
-  validatorExpress.check('body_news', VALIDATESCHEMA.required)
+  validatorExpress.check('price', VALIDATESCHEMA.required)
+    .notEmpty(),
+  validatorExpress.check('stop_min', VALIDATESCHEMA.required)
+    .notEmpty(),
+  validatorExpress.check('stop_max', VALIDATESCHEMA.required)
     .notEmpty(),
 ], async (req, res, next) => {
 

@@ -1,9 +1,7 @@
 import { database, Model } from '../config/db_config.js';
 import Sequelize from 'sequelize';
 import ModelUser from '../models/Users.js'
-import ModelGallery from '../models/Gallery.js'
-import ModelRefCategoriesPublications from "./RefCategoriesPublications.js"
-import ModelCategories from "../models/Categories.js"
+import ModelGalleryImage from './GalleryImage.js'
 
 
 class publications extends Model { }
@@ -12,39 +10,27 @@ const Publication = publications.init({
     user_id: {
         type: Sequelize.INTEGER
     },
-    title: {
+    name: {
         type: Sequelize.STRING
     },
     description: {
         type: Sequelize.STRING
     },
-    url_dir_image: {
+    coin: {
         type: Sequelize.STRING,
     },
-    featured: {
-        type: Sequelize.BOOLEAN
+    price: {
+        type: Sequelize.DOUBLE
     },
-    image: {
-        type: Sequelize.STRING
-    },
-    body_news: {
-        type: Sequelize.TEXT
-    },
-    status: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-    },
-    user_disabled_id: {
+    stop_min: {
         type: Sequelize.INTEGER
     },
-    url_video: {
-        type: Sequelize.STRING,
-        defaultValue: null
-    },
+    stop_max: {
+        type: Sequelize.INTEGER
+    }, 
 },
     {
         sequelize: database,
-        schema: 'public',
         modelName: 'publications',
         timestamps: true,
         underscored: true,
@@ -59,16 +45,16 @@ publications.belongsTo(ModelUser, {
 })
 
 //relacion para la galeria de la publicacion
-publications.hasMany(ModelGallery, {
+publications.hasMany(ModelGalleryImage, {
     foreignKey: "publication_id"
 })
-ModelGallery.belongsTo(publications, {
+ModelGalleryImage.belongsTo(publications, {
     foreignKey: "id"
 })
 
-publications.belongsToMany(ModelCategories, { through: ModelRefCategoriesPublications });
+// publications.belongsToMany(ModelCategories, { through: ModelRefCategoriesPublications });
 
-ModelCategories.belongsToMany(publications, { through: ModelRefCategoriesPublications });
+// ModelCategories.belongsToMany(publications, { through: ModelRefCategoriesPublications });
 
 
 

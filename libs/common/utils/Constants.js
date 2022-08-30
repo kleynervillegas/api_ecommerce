@@ -1,5 +1,6 @@
 export const MESSAGES = {
     success: 'Operación exitosa',
+    sesionSuccess: 'Sesión Iniciada',
     successCreate: 'Registro exitoso',
     badRequest: 'El envío de la información no se pudo completar',
     dataIncorrect: 'Usuario o contraseña incorrecta',
@@ -18,6 +19,7 @@ export const STATUS = {
     incorrectUserName: 401,
     incorrectPassword: 401,
     success: 200,
+    sesionSuccess: 200,
     successCreate: 201,
     badRequest: 400,
     dataIncorrect: 401,
@@ -43,5 +45,7 @@ export const VALIDATESCHEMA = {
     EmailDuplicate: "Correo ya se encuentra registrado",
     numberIdDuplicate: 'Cédula  ya se encuentra registrada',
     incorrectPasswordConfirmation: 'Contraseña y confimacion de contraseña no coinciden',
-    incorrectPasswordOld: 'Contraseña no coinciden con la ya registrada'
+    incorrectPasswordOld: 'Contraseña no coinciden con la ya registrada',
+    decimal: 'Campo debe ser decimal',
+    numerico: 'Campo debe ser numerico'
 }

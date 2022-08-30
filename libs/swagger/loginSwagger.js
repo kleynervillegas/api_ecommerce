@@ -42,7 +42,7 @@
  *           type: string
  *           description: password for the autentication    
  *       example:
- *         email: "kvillegas@gmail.com"
+ *         email: "kleynervillegas@gmail.com"
  *         password: "1234"
  */
 

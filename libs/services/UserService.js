@@ -1,4 +1,3 @@
-import { CrudService } from "../common/crud/CrudService.js"
 import ModelUser from "../models/Users.js"
 import ModelRoles from "../models/Roles.js"
 import bcrypt from 'bcrypt'

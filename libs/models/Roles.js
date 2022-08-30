@@ -14,7 +14,6 @@ const Role = Roles.init({
 },
     {
         sequelize: database,
-        schema: 'public',
         modelName: 'roles',
         timestamps: true,
         underscored: true,

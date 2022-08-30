@@ -1,4 +1,3 @@
-import { CrudService } from "../common/crud/CrudService.js"
 import ModelUser from "../models/Users.js"
 import ModelRoles from '../models/Roles.js'
 import bcrypt from 'bcrypt'
@@ -9,10 +8,10 @@ export class LoginService {
     constructor() { }
 
     async loginUser(data) {
-        
+
         if (data.email && data.password) {
 
-            const user = await ModelUser.findOne(
+            let user = await ModelUser.findOne(
                 {
                     attributes: {
                         exclude: ['role_id']
@@ -23,7 +22,7 @@ export class LoginService {
                     include: [
                         {
                             model: ModelRoles,
-                            attributes: ['name', 'status'],
+                            attributes: ['id','name', 'status'],
                         }
                     ]
 
@@ -33,10 +32,21 @@ export class LoginService {
             );
             if (user && user.status) {
                 if (await bcrypt.compare(data.password, user.password)) {
-                    user.password = ""
+                     user = {
+                        id:user.id,
+                        full_name:user.full_name,
+                        last_names:user.last_names,
+                        number_id:user.number_id,
+                        type_number_id:user.type_number_id,
+                        number_phone:user.number_phone,
+                        email:user.email,
+                        createdAt:user.createdAt,
+                        role_id:user.role.id,
+                        role_name:user.role.name
+                    }
                     const token = await jwt.sign(
                         { user },
-                        process.env['JWT_KEY'],
+                        process.env['jwtSecret'],
                         { expiresIn: process.env['AUTH_EXPIRED_TIME'] });
                     return { authorization: token }
                 } else {
