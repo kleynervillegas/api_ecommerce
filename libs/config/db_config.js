@@ -14,5 +14,4 @@ const database = new Sequelize(config.NAME_DATA_BASE, config.USER_NAME, config.P
 await database.authenticate();
 console.log('connect sucess bd for sequelize', database.getDatabaseName());
 
-
 export { database, Model }

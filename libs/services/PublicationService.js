@@ -6,6 +6,7 @@ import ModelUser from '../models/Users.js'
 import ModelGalleryImage from '../models/GalleryImage.js'
 import { getPaginate } from "../common/utils/getPaginate.js";
 import Sequelize from 'sequelize';
+import { createNotification } from "../common/funtion.js";
 
 export class PublicationService {
 
@@ -39,6 +40,7 @@ export class PublicationService {
 
         galleryImage = await ModelGalleryImage.bulkCreate(dataSaveGallery, transaction);
 
+       const notify= createNotification(false,publication,null,'Ha registrado el siguiente producto', 'registro de producto');
         return { ...publication.dataValues, galleryImage: galleryImage };
     }
 
@@ -87,15 +89,11 @@ export class PublicationService {
         const countPage = Math.floor(Math.abs(count - 1) / limit);
 
         const publications = await ModelPublication.findAll({
-            // attributes: { exclude: ['image', 'url_dir_html', 'image_news', 'user_id',] },
+            where:{status:true},
             order: [
                 ['id', 'DESC'],
             ],
-            include: [
-                {
-                    model: ModelUser,
-                    attributes: ['id', 'full_name', 'last_names'],
-                },
+            include: [             
                 {
                     model: ModelGalleryImage,
                     attributes:['id','url_image']
@@ -111,14 +109,12 @@ export class PublicationService {
     async getOnePublications(id) {
 
         const publications = await ModelPublication.findOne({
+            attributes: { exclude: ['user_id','createdAt','updatedAt','stop_max','stop_min'] },           
             where: {
                 id: id,
+                status:true,
             },
-            include: [
-                {
-                    model: ModelUser,
-                    attributes: ['id', 'full_name', 'last_names'],
-                },
+            include: [               
                 {
                     model: ModelGalleryImage,
                     attributes: ['id', 'url_image', 'status']
@@ -128,7 +124,7 @@ export class PublicationService {
 
         return publications
     }
-    async disabledPublications(id, user) {
+    async disabledPublications(id) {
 
         let publication = await ModelPublication.findOne({
             where: {
@@ -144,7 +140,6 @@ export class PublicationService {
         await ModelPublication.update(
             {
                 status: false,
-                user_disabled_id: user.id
             },
             {
                 where: {

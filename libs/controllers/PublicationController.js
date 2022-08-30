@@ -112,7 +112,7 @@ PublicationController.get(URLS.getAllPublications, async (req, res) => {
 
 PublicationController.delete(URLS.disabledPublications, async (req, res) => {
   const { id } = req.params
-  await publicationService.disabledPublications(id,req.user)
+  await publicationService.disabledPublications(id)
     .then((result) => {
       const response = new ResponseService(
         STATUS.success,

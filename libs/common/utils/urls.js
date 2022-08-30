@@ -20,4 +20,11 @@ export const URLS = {
   editPublications: '/publication/edit/publications',
   getOnePublications: '/publication/getone/publications/:id',
   deleteImagen: '/publication/deleteimagen/:id',
+  //ruta para notify
+  getOneNotify: '/notify/getone/notify/:id',
+  getAllNotificationsUser: '/notify/getall/notify/User',
+  disabledNotify: '/notify/disabled/notify/:id',
+  //ruta para notify
+  addCars: '/car/create',
+  getAllCarsUser: '/car/getall/car/User',
 }

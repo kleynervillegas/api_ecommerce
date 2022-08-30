@@ -27,7 +27,11 @@ const Publication = publications.init({
     },
     stop_max: {
         type: Sequelize.INTEGER
-    }, 
+    },
+    status: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
+    },
 },
     {
         sequelize: database,

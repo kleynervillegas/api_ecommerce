@@ -1,6 +1,8 @@
 import { database, Model } from '../config/db_config.js';
 import Sequelize from 'sequelize';
 import ModelRoles from './Roles.js'
+import ModelNotifications from './Notifications.js'
+
 class Users extends Model { }
 
 const User = Users.init({
@@ -52,5 +54,13 @@ ModelRoles.hasOne(Users, {
 Users.belongsTo(ModelRoles, {
     foreignKey: "role_id"
 })
+
+Users.hasMany(ModelNotifications, {
+    foreignKey: "user_id"
+})
+ModelNotifications.belongsTo(Users, {
+    foreignKey: "id"
+})
+
 
 export default User;

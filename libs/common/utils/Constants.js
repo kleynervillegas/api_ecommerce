@@ -13,6 +13,7 @@ export const MESSAGES = {
     emialDuplicate: 'Correo ya se encuentra registrado',
     errorServe: 'Internal Server Error',
     notDisableCategory: 'No se puede deshabilitar esta categoria',
+    carAdd: 'Producto agregado satisfactorimente',
 }
 
 export const STATUS = {
@@ -31,7 +32,8 @@ export const STATUS = {
     errorServe: 500,
     incorrectPasswordConfirmation: 401,
     notDisableCategory: 401,
-    notDisableCategory: 401
+    notDisableCategory: 401,
+    carAdd: 200
 }
 
 export const VALIDATESCHEMA = {
