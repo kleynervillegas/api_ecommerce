@@ -5,6 +5,7 @@ export const MESSAGES = {
     badRequest: 'El envío de la información no se pudo completar',
     dataIncorrect: 'Usuario o contraseña incorrecta',
     Unauthorized: 'Perfil no autorizado',
+    sesionExpire: 'Sesion Expirada',
     notFound: 'Registro no encontrado',
     notCreate: 'Esta información fue registrada previamente',
     incorrectPassword: 'contraseña Incorrecta',
